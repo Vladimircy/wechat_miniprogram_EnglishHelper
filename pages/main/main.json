@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "wordCard" : "../../components/wordCard/wordCard"
+  }
+}

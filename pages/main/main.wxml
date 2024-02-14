@@ -1,0 +1,15 @@
+<view>
+  <view class="word" style="{{wordHidden?'margin-top:50rpx':'margin-top:0rpx'}}">
+    <wordCard word="{{curWord}}" hidden="{{wordHidden}}"></wordCard>
+  </view>
+  <view wx:if="{{!input.hidden}}" class="input">
+    <input placeholder="your answer" auto-focus="true" bindinput="{{updataAnswer}}"/>
+  </view>
+  <switch bindchange="changeMode">记忆/默写</switch>
+  <view class="buttons">
+    <button class="mybutton" bind:tap="preWord"> 上一个 </button>
+    <button class="mybutton" bind:tap="{{wordHidden?'checkAnswer':'nextWord'}}"> 下一个 </button>
+    <button class="mybutton" wx:if="{{!input.hidden}}" bind:tap="showAnswer"> 看答案 </button>
+  </view>
+  
+</view>

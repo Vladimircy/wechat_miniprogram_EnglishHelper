@@ -1,0 +1,9 @@
+<!--components/wordCard/wordCard.wxml-->
+<view class="container">
+  <view wx:if="{{!hidden}}" class="letters">
+    <text>{{word.word}}</text>
+  </view>
+  <view class="meanings" wx:for="{{word.meaning}}" wx:for-item="meaning" wx:for-index="index" wx:key="index">
+    <text>{{meaning}}</text>
+  </view>
+</view>
