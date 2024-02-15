@@ -1,0 +1,9 @@
+/* components/subswordcard/subswordcard.wxss */
+.container_2 {
+  height: 25rpx;
+  margin-top: 5rpx;
+  margin-bottom: 3rpx;
+  margin-left: 8rpx;
+  margin-right: 8rpx;
+  background-color: aqua;
+}

@@ -1,5 +1,10 @@
 <view>
-  <view class="word" style="{{wordHidden?'margin-top:50rpx':'margin-top:0rpx'}}">
+  <view class="tools">
+    <image src="{{wordfavor == 1?'/assets/favorite-fill.svg' : '/assets/favorite.svg'}}" class="setting" bind:tap="toFavorite"></image>
+    <!-- <text>{{wordfavor}}</text> -->
+    <image src="../../assets/setting.svg" class="setting" bind:tap="toSetting"></image>
+  </view>
+  <view class="word" style="{{wordHidden?'margin-top:70rpx':'margin-top:20rpx'}}">
     <wordCard word="{{curWord}}" hidden="{{wordHidden}}"></wordCard>
   </view>
   <view wx:if="{{!input.hidden}}" class="input">
@@ -10,5 +15,4 @@
     <button class="mybutton" bind:tap="{{wordHidden?'checkAnswer':'nextWord'}}"> 下一个 </button>
     <button class="mybutton" wx:if="{{!input.hidden}}" bind:tap="showAnswer"> 看答案 </button>
   </view>
-  <image src="../../assets/setting.svg" class="setting" bind:tap="toSetting"></image>
 </view>

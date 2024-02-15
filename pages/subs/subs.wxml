@@ -1,2 +1,16 @@
 <!--pages/subs/subs.wxml-->
-<text>pages/subs/subs.wxml</text>
+<!-- <text>pages/subs/subs.wxml</text> -->
+<view class="favored-list">
+  <view wx:for="{{favored}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+    <!-- <text>{{item.word}}</text> -->
+    <view class="container_2">
+      <view class="letters">
+        <text>{{item.word}}</text>
+      </view>
+      <view class="meanings" wx:for="{{item.meaning}}" wx:for-item="meaning" wx:for-index="index" wx:key="index">
+        <text>{{meaning}}</text>
+      </view>
+    </view>
+    <!-- <wordCard word="{{item}}" hidden=false></wordCard> -->
+  </view>
+</view>

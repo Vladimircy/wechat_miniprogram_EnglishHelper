@@ -1,6 +1,13 @@
 page{
   background-color: #464850;
 }
+.tools {
+  margin-top: 10rpx;
+  margin-right: 10rpx;
+  height: 50rpx;
+  display: flex;
+  justify-content: flex-end;
+}
 .word{
   margin: 0 auto;
   width: fit-content;
@@ -25,9 +32,9 @@ button{
   margin-bottom: 10rpx;
 }
 .setting{
-  position: fixed;
-  bottom: 20rpx;
-  right: 20rpx;
+  /* position: fixed; */
+  /* bottom: 20rpx; */
+  /* right: 20rpx; */
   width: 100rpx;
   height: 100rpx;
 }

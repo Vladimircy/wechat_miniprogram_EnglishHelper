@@ -1,1 +1,14 @@
 /* pages/subs/subs.wxss */
+.container_2 {
+  height: 85rpx;
+  margin-top: 5rpx;
+  margin-bottom: 15rpx;
+  margin-left: 8rpx;
+  margin-right: 8rpx;
+  background-color: darkgray;
+  overflow: hidden;
+}
+
+/* .letters {
+
+} */
