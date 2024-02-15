@@ -1,6 +1,7 @@
-/* pages/setting/setting.wxss */
-.mode{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+.picker{
+  padding: 13px;
+  background-color: #FFFFFF;
+}
+page{
+  padding-top: 80rpx;
 }

@@ -6,21 +6,54 @@ Page({
    * 页面的初始数据
    */
   data: {
-    mode : "M"
+    wordListRange : ['cet4', 'gre', 'ielts', 'hbs'],
+    wordListIndex : app.globalData.curWordListRangeIndex,
+    modeRange : ["记忆","默写"],
+    modeIndex : app.globalData.modeRangeIndex,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  updateMode : function(e){
+  updateWordList : function(e){
     this.setData({
-      mode : e.detail.value ? "M" : "R"
+      wordListIndex : e.detail.value
     })
-    app.globalData.mode = e.detail.value ? "M" : "R"
+    app.globalData.curWordList = this.data.wordListRange[e.detail.value]
+    app.globalData.curWordListRangeIndex = e.detail.value
+    wx.getStorage({
+      'key' : app.globalData.curWordList + "_index",
+      success(res){
+        app.globalData.curIndex = res.data
+      },
+      fail(res){
+        wx.setStorage({
+          'key' : app.globalData.curWordList + "_index",
+          success(res){
+            app.globalData.curIndex = 0
+          }
+        })
+      }
+    })
+    wx.setStorage({
+      'key' : 'curwordList',
+      'data' : app.globalData.curWordList,
+      success(res){
+      }
+    })
+  },  
+  updateMode : function(e){
+    const bmode = ["M","R"]
+    this.setData({
+      modeIndex : e.detail.value
+    })
+    app.globalData.mode = bmode[e.detail.value]
+    app.globalData.modeRangeIndex = e.detail.value
   },
   onLoad(options) {
     this.setData({
-      mode : app.globalData.mode 
+      wordListIndex : app.globalData.curWordListRangeIndex,
+      modeIndex : app.globalData.modeRangeIndex
     })
   },
 
@@ -49,6 +82,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
+    console.log(this.data.modeIndex)
     const pages = getCurrentPages()
     const perpage = pages[pages.length - 2]
     perpage.onLoad()  

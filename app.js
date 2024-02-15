@@ -11,7 +11,9 @@ App({
   },
   globalData: {
     mode : "M",
+    modeRangeIndex: 0 ,
     curWordList : "cet4",
-    curIndex : 0
+    curIndex : 0,
+    curWordListRangeIndex : 0
   }
 })

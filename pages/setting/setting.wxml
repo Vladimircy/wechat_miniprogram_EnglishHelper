@@ -1,5 +1,15 @@
 <!--pages/setting/setting.wxml-->
+<view class="wordList">
+  <picker header-text="词本" mode="selector" value="{{wordListIndex}}" range="{{wordListRange}}" bindchange="updateWordList">
+    <view class="picker">
+      当前选择：{{wordListRange[wordListIndex]}}
+    </view>
+  </picker>
+</view>
 <view class="mode">
-  <text>当前模式 : {{mode=='M' ? "记忆" : "默写"}}</text>
-  <switch checked="{{mode=='M' ? true : false}}" bindchange="updateMode"></switch>
+  <picker header-text="模式" mode="selector" range="{{modeRange}}" value="{{modeIndex}}" bindchange="updateMode"> 
+    <view class="picker">
+      当前选择：{{modeRange[modeIndex]}}
+    </view>
+  </picker>
 </view>

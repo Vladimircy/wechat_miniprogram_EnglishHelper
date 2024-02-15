@@ -15,18 +15,22 @@
     "backgroundColor": "#cccccc",
     "list": [
       {
+        "iconPath": "assets/main.png",
         "pagePath": "pages/main/main",
         "text": "背单词"
       },
       {
+        "iconPath": "assets/plan.png",
         "pagePath": "pages/plan/plan",
         "text": "学习计划"
       },
       {
+        "iconPath": "assets/subs.png",
         "pagePath": "pages/subs/subs",
         "text": "收藏"
       },
       {
+        "iconPath": "assets/mine.png",
         "pagePath": "pages/mine/mine",
         "text": "我的"
       }
