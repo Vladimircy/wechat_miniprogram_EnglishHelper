@@ -1,0 +1,26 @@
+/* components/bookCard/bookCard.wxss */
+.bookCard{
+  display: flex;
+  flex-direction: row;
+}
+.book{
+  width: 150rpx;
+  height: 150rpx;
+}
+.detail{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.progress{
+  width: 500rpx;
+}
+.title{
+  font-size: large;
+  font-weight: 600;
+  color:aquamarine;
+}
+.index{
+  font-size: small;
+  font: 200;
+}

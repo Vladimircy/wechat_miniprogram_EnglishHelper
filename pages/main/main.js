@@ -3,7 +3,7 @@ import cet4 from "../../data/cet4"
 import gre from "../../data/gre"
 import hbs from "../../data/hbs"
 import ielts from "../../data/ielts"
-
+var app = getApp()
 Page({
 
   /**
@@ -24,10 +24,6 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  getWord : function(index){
-    console.log(cet4.cet4word(index))
-    return cet4.cet4word(index)
-  },
   preWord : function(){
     if(this.data.wordIndex > 0 ){
       var nextWord = this.data.getWordfunc(this.data.wordIndex - 1) 
@@ -42,12 +38,24 @@ Page({
     if(this.data.wordIndex < this.data.wordListLength - 1){
       var nextWord = this.data.getWordfunc(this.data.wordIndex + 1) 
       console.log(nextWord)
+      var wordIndex = this.data.wordIndex
       this.setData({
-        wordIndex : this.data.wordIndex + 1,
+        wordIndex : wordIndex + 1,
         curWord : nextWord,
         wordHidden : !this.data.input.hidden
       })
+      wx.setStorage({
+        "key" : app.globalData.curWordList + "_index",
+        "data" : wordIndex + 1,
+        success(){
+        }
+      })
     }
+  },
+  toSetting : function(){
+    wx.navigateTo({
+      url: '../setting/setting',
+    })
   },
   setWordList : function(wordListName){
     switch(wordListName){
@@ -93,30 +101,44 @@ Page({
   },
   onLoad(options) {
     const that = this
+    var hidden = !(app.globalData.mode == 'M')
+    this.setData({
+      wordHidden : hidden,
+      input : {
+        hidden : !hidden,
+        answer : this.data.input.answer
+      }
+    })
+    
     wx.getStorage({
       "key" : "curwordList",
       success(res){
         that.setWordList(res.data)   
+        app.globalData.curWordList = res.data
       },
       fail(){
         wx.setStorage({
           "key" : "curwordList",
           "data" : "cet4",
           success(res){
+            app.globalData.curWordList = "cet4"
           }
         })
+        
       }
     })
     wx.getStorage({
-      "key" : "wordListIndex",
+      "key" : app.globalData.curWordList + "_index",
       success(res){
+        console.log(res.data)
         that.setData({
-          wordIndex : res.data
+          wordIndex : res.data,
+          curWord : that.data.getWordfunc(res.data)
         })
       },
       fail(){
         wx.setStorage({
-          "key" : "wordListIndex",
+          "key" : app.globalData.curWordList + "_index",
           "data" : 0,
           success(res){
           }
@@ -128,15 +150,6 @@ Page({
   showAnswer : function(){
     this.setData({
       wordHidden : false
-    })
-  },
-  changeMode : function(e){
-    this.setData({
-      wordHidden : e.detail.value,
-      input : {
-        hidden : !e.detail.value,
-        answer : this.data.input.answer
-      }
     })
   },
   checkAnswer : function(){

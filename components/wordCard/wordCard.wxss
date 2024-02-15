@@ -1,6 +1,4 @@
-Page{
-  background-color: #464850;
-}
+
 .letters{
   color: darkcyan;
   font-size:xx-large;

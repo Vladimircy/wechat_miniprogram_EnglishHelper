@@ -1,0 +1,5 @@
+<!--pages/setting/setting.wxml-->
+<view class="mode">
+  <text>当前模式 : {{mode=='M' ? "记忆" : "默写"}}</text>
+  <switch checked="{{mode=='M' ? true : false}}" bindchange="updateMode"></switch>
+</view>

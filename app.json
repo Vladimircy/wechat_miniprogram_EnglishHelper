@@ -3,7 +3,8 @@
     "pages/main/main",
     "pages/plan/plan",
     "pages/subs/subs",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/setting/setting"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -11,7 +12,7 @@
     "navigationBarBackgroundColor": "#ffffff"
   },
   "tabBar": {
-    "backgroundColor": "#ffffff",
+    "backgroundColor": "#cccccc",
     "list": [
       {
         "pagePath": "pages/main/main",

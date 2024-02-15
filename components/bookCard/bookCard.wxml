@@ -1,0 +1,8 @@
+<view class="bookCard">
+  <image src="../../assets/book.svg" class="book"></image>
+  <view class="detail"> 
+    <text class="title">{{wordList.title}}</text>
+    <text class="index">{{wordList.index}} / {{wordList.wordListLength}}</text>
+    <progress percent="{{numberFormat(wordList.index / wordList.wordListLength)}}" show-info="true" class="progress" backgroundColor="#404040"></progress>
+  </view>
+</view>

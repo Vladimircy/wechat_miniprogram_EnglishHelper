@@ -1,2 +1,8 @@
 <!--pages/plan/plan.wxml-->
-<text>pages/plan/plan.wxml</text>
+<view class="header">
+  <text>学习进度</text>
+</view>
+<view class="bookCard" wx:for="{{wordLists}}" wx:for-item="wordList" wx:for-index="index" wx:key="index"> 
+  <bookCard wordList="{{wordList}}" ></bookCard>
+</view>
+<image src="../../assets/refresh.svg" bind:tap="refresh" class="refresh"></image>

@@ -1,4 +1,5 @@
 {
+  "component": true,
   "usingComponents": {
     "bookCard" : "../../components/bookCard/bookCard"
   }

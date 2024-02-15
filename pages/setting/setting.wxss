@@ -1,0 +1,6 @@
+/* pages/setting/setting.wxss */
+.mode{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
