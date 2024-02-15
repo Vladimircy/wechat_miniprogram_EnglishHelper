@@ -3,7 +3,8 @@
     <wordCard word="{{curWord}}" hidden="{{wordHidden}}"></wordCard>
   </view>
   <view wx:if="{{!input.hidden}}" class="input">
-    <input placeholder="your answer" auto-focus="true" bindinput="{{updataAnswer}}"/>
+    <input placeholder="your answer" auto-focus="true" name='answer' bindinput="updateAnswer" value="{{inputvalue}}"/>
+    <image wx:if="{{submitted}}" src="{{isCorrect?'../../assets/correct.svg' : '../../assets/wrong.svg'}}" class="checkAnswerimg"></image>
   </view>
   <view class="buttons">
     <button class="mybutton" bind:tap="preWord"> 上一个 </button>

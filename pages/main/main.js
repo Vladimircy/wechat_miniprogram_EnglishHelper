@@ -18,7 +18,10 @@ Page({
     input : {
       hidden : true, // mode : true when memoring, false when reciting
       answer : null
-    }
+    },
+    inputvalue : '',
+    isCorrect : false,
+    submitted : false
   },
 
   /**
@@ -30,7 +33,9 @@ Page({
       this.setData({
         wordIndex : this.data.wordIndex - 1,
         curWord : nextWord,
-        wordHidden : !this.data.input.hidden
+        wordHidden : !this.data.input.hidden,
+        submitted : false,
+        isCorrect : false
       })
     }
   },
@@ -42,7 +47,10 @@ Page({
       this.setData({
         wordIndex : wordIndex + 1,
         curWord : nextWord,
-        wordHidden : !this.data.input.hidden
+        wordHidden : !this.data.input.hidden,
+        inputvalue : '',
+        submitted : false,
+        isCorrect : false
       })
       wx.setStorage({
         "key" : app.globalData.curWordList + "_index",
@@ -91,7 +99,7 @@ Page({
       break
     }
   },
-  updateAnswer(res){
+  updateAnswer : function(res){
     this.setData({
       input : {
         hidden : this.data.input.hidden,
@@ -153,9 +161,13 @@ Page({
     })
   },
   checkAnswer : function(){
+    this.setData({
+      submitted : true
+    })
     if(this.data.input.answer == this.data.curWord.word){
       this.setData({
-        wordHidden : false
+        wordHidden : false,
+        isCorrect : true
       })
     }
   },

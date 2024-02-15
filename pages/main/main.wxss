@@ -18,6 +18,10 @@ page{
   flex-direction: row;
   flex-wrap: wrap;
 }
+.checkAnswerimg{
+  width: 80rpx;
+  height: 80rpx;
+}
 switch{
   float: right;
 }
