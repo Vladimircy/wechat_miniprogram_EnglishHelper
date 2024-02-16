@@ -1,1 +1,32 @@
 /* pages/subs/subs.wxss */
+.container_2 {
+  height: 85rpx;
+  margin-top: 5rpx;
+  margin-bottom: 15rpx;
+  margin-left: 8rpx;
+  margin-right: 8rpx;
+  background-color: darkgray;
+  overflow: hidden;
+  padding-left: 10rpx;
+  border-radius: 10rpx;
+}
+
+.mode {
+  display: flex;
+  /* flex-direction: row; */
+  /* justify-content: flex-end; */
+  margin-bottom: 20rpx;
+}
+
+.mode-text {
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+}
+
+.mode-button {
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}

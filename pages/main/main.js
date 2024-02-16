@@ -15,6 +15,8 @@ Page({
     getWordfunc : cet4.cet4word,
     curWord : cet4.cet4word(0),
     wordHidden : false,
+    wordfavor : 0,
+    wordfavorlist : null,
     input : {
       hidden : true, // mode : true when memoring, false when reciting
       answer : null
@@ -37,6 +39,20 @@ Page({
         submitted : false,
         isCorrect : false
       })
+      var curpage = this;
+      wx.getStorage({
+        "key" : "favorlist",
+        success(res) {
+          if(res.data != null) {
+            curpage.setData({
+              wordfavorlist : res.data,
+              wordfavor : res.data[curpage.data.wordIndex]
+            })
+            console.log("current word", curpage.data.wordfavor)
+          }
+        }
+
+      })
     }
   },
   nextWord : function(){
@@ -52,6 +68,27 @@ Page({
         submitted : false,
         isCorrect : false
       })
+      var curpage = this;
+      wx.getStorage({
+        "key" : "favorlist",
+        success(res) {
+          if(res.data != null) {
+            curpage.setData({
+              wordfavorlist : res.data,
+              wordfavor : res.data[wordIndex + 1]
+            })
+            console.log("current word", curpage.data.wordfavor)
+          }
+        }
+        // complete(res) {
+        //   curpage.setData({
+        //     wordfavor : curpage.data.wordfavorlist[wordIndex + 1]
+        //   })
+        // }
+      })
+      // this.setData({
+      //   wordfavor : curpage.data.wordfavorlist[wordIndex + 1]
+      // })
       wx.setStorage({
         "key" : app.globalData.curWordList + "_index",
         "data" : wordIndex + 1,
@@ -64,6 +101,111 @@ Page({
     wx.navigateTo({
       url: '../setting/setting',
     })
+  },
+  toFavorite : function(){
+    var idx = this.data.wordIndex;
+    var curpage = this;
+    wx.getStorage({
+      key : "favorlist",
+      success(res) {
+        if(res.data == null) {
+          var favorlist = new Array(4447).fill(0);
+          if (favorlist[idx] == 0) {
+            favorlist[idx] = 1
+          } else {
+            favorlist[idx] = 0
+          }
+          curpage.setData({
+            wordfavorlist: favorlist
+          })
+        } else {
+          var favorlist = res.data;
+          if (favorlist[idx] == 0) {
+            favorlist[idx] = 1
+          } else {
+            favorlist[idx] = 0
+          }
+          curpage.setData({
+            wordfavorlist: favorlist
+          })
+        }
+        wx.setStorage({
+          "key" : "favorlist",
+          "data" : curpage.data.wordfavorlist
+        })
+        console.log("change", curpage.data.wordIndex)
+      },
+      fail (res) {
+        var favorlist = new Array(4447).fill(0);
+        console.log(idx);
+        if (favorlist[idx] == 0) {
+          favorlist[idx] = 1
+        } else {
+          favorlist[idx] = 0
+        }
+        curpage.setData({
+          wordfavorlist: favorlist
+        })
+        wx.setStorage({
+          "key" : "favorlist",
+          "data" : curpage.data.wordfavorlist
+        })
+        console.log("Fail")
+      },
+      complete(res) {
+        curpage.setData({
+          wordfavor: curpage.data.wordfavorlist[idx]
+
+        })
+        console.log(curpage.data.wordfavor)
+        console.log("complete")
+      }
+    })
+    var favored = [];
+    wx.getStorage({
+      "key" : "favored",
+      success(res) {
+        if(res.data != null) {
+          favored = res.data;
+          if(curpage.data.wordfavor == 0) {
+            favored = favored.filter(function(item) {
+              return item.word != curpage.data.curWord.word
+            })
+          } else{
+            favored.push(curpage.data.curWord)
+          }
+        }
+      },
+      fail(res) {
+        var favorlist = curpage.data.wordfavorlist;
+        favored = [];
+        for (var i = 0; i < favorlist.length; i++) {
+          if (favorlist[i] == 1) {
+            // favored.push(i);
+          }
+        }
+      },
+      complete(res) {
+        console.log("favored: ", favored);
+        wx.setStorage({
+          "key" : "favored",
+          "data" : favored
+        })
+      }
+    })
+    // if(this.data.wordfavor == 0) {
+    //   this.setData({
+    //     wordfavor : 1
+    //   })
+    // } else if(this.data.wordfavor == 1) {
+    //   this.setData({
+    //     wordfavor : 0
+    //   })
+    // }
+    // this.setData({
+    //   wordfavor: curpage.data.wordfavorlist[idx]
+    // })
+    // console.log(this.data.wordfavor)
   },
   setWordList : function(wordListName){
     switch(wordListName){
@@ -111,6 +253,7 @@ Page({
     const that = this
     var hidden = !(app.globalData.mode == 'M')
     this.setData({
+      wordIndex : 0,
       wordHidden : hidden,
       input : {
         hidden : !hidden,

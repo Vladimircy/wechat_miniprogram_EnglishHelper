@@ -5,14 +5,42 @@ Page({
    * 页面的初始数据
    */
   data: {
+    favored : null,
+    hidden : false
 
   },
 
+  updateMode : function() {
+    if(this.data.hidden == false) {
+      this.setData({
+        hidden : true
+      })
+    } else {
+      this.setData({
+        hidden : false
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    var curpage = this;
+    wx.getStorage({
+      "key" : "favored",
+      success(res) {
+        if(res.data != null) {
+          curpage.setData({
+            favored: res.data
+          })
+        }
+        // console.log("SUCCESS!", curpage.data.favored)
+      },
+      complete(res) {
+        console.log("get favored:", curpage.data.favored)
 
+      }
+    })
   },
 
   /**
@@ -26,6 +54,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    var curpage = this;
+    wx.getStorage({
+      "key" : "favored",
+      success(res) {
+        if(res.data != null) {
+          curpage.setData({
+            favored: res.data
+          })
+        }
+        // console.log("SUCCESS!", curpage.data.favored)
+      },
+      complete(res) {
+        console.log("get favored:", curpage.data.favored)
+
+      }
+    })
 
   },
 

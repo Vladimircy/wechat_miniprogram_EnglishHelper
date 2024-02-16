@@ -1,0 +1,6 @@
+<!--components/subswordcard/subswordcard.wxml-->
+<!-- <text>components/subswordcard/subswordcard.wxml</text> -->
+<view class="container_2">
+  <text>{{word.word}}</text>
+  <text>111</text>
+</view>
