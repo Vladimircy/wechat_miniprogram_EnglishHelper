@@ -24,6 +24,8 @@ page{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto;
 }
 .checkAnswerimg{
   width: 80rpx;
@@ -33,7 +35,7 @@ switch{
   float: right;
 }
 button{
-  margin-bottom: 10rpx;
+  margin-bottom: 20rpx;
 }
 .setting{
   /* position: fixed; */

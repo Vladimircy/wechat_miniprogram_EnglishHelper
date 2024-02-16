@@ -37,7 +37,11 @@ Page({
         curWord : nextWord,
         wordHidden : !this.data.input.hidden,
         submitted : false,
-        isCorrect : false
+        isCorrect : false,
+        input : {
+          answer : '',
+          hidden : this.data.input.hidden
+        }
       })
       var curpage = this;
       wx.getStorage({
@@ -66,7 +70,11 @@ Page({
         wordHidden : !this.data.input.hidden,
         inputvalue : '',
         submitted : false,
-        isCorrect : false
+        isCorrect : false,
+        input : {
+          answer : '',
+          hidden : this.data.input.hidden
+        }
       })
       var curpage = this;
       wx.getStorage({
@@ -311,6 +319,12 @@ Page({
       this.setData({
         wordHidden : false,
         isCorrect : true
+      })
+    }
+    else{
+      this.setData({
+        wordHidden : true,
+        isCorrect : false
       })
     }
   },
