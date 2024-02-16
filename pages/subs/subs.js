@@ -5,10 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    favored : null
+    favored : null,
+    hidden : false
 
   },
 
+  updateMode : function() {
+    if(this.data.hidden == false) {
+      this.setData({
+        hidden : true
+      })
+    } else {
+      this.setData({
+        hidden : false
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
